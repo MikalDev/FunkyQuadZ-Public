@@ -1,5 +1,7 @@
-# FunkyQuadZ-Public
+# FunkyQuadZ Docs and Issues
 FunkyQuadZ documentation and bug tracking.
+
+Please file bugs and feature requests here: [Bugs/Features](https://github.com/MikalDev/FunkyQuadZ-Public/issues)
 
 # General use case:
 - Define layout and game logic in C3 on a 2D layer (e.g. a map for doom game, a platformer layouyt)
