@@ -31,14 +31,21 @@ There are two modes for FQZs:
 - Normal animation ACEs
 # Constraints
 ## ZSort
-- Simple Zsort using relative distance of object from camera works well. Create sortables family, with instance variable zOrder.
-- `-> ZSort: Set zOrder to 0-((Self.X-Camera3D.CameraX)^2+(Self.Y-Camera3D.CameraY)^2+(Self.Z-Camera3D.CameraZ)^2)`
-- `-> System: Sort ZSort Z order by zOrder`
-- Look for ways to optimize this (e.g. experiment with Visible condition.)
 - The FQZ will render in the same order as if they were other 2d sprite objects. They will render from bottom layer to top layer and from bottom to top within a layer.
 - To render properly you must sort the quads depending on their depth and your view. There are some examples in the example project file how to do this depending on camera location vs object location (also see Painter's Algorithm.) - Since the C3 renderer does not use a depth buffer, it's not possible to have quads 'intersect' and render properly. Focus instead on creating non intersecting planes and solids.
+- Simple Zsort using relative distance of object from camera works well. Create sortables family, with instance variable zOrder. This is called the [Painter's Algorihim](https://en.wikipedia.org/wiki/Painter%27s_algorithm)
+  - `-> ZSort: Set zOrder to 0-((Self.X-Camera3D.CameraX)^2+(Self.Y-Camera3D.CameraY)^2+(Self.Z-Camera3D.CameraZ)^2)`
+  - `-> System: Sort ZSort Z order by zOrder`
+  - Note that the calculation is not the actual distance (which would be square root of the sum), we only need to know relative distance.
+- Look for ways to optimize this (e.g. experiment with Visible condition.)
 - If the quad center is off of the screen it will be culled and not rendered. It may be possible to create a 'guard band' around the screen so this is less intrusive. Also investigating ways to make this not happen until the very edge.
 - Using ScrollTo and Layout Scaling help with this (while not changing the view from the Cameral control (se below.)
+## Mixing FQZ and C3 Sprites, etc.
+- Generally recommend to keep them on separate layers (e.g. 2D layers and 3D layers)
+- A 'sandwich model' works well:
+  - 2D background bottom layer.
+  - 3D FQZ layer (with FQZCamera control)
+  - 2D HUD layer (with 0,0 parllax) for text, score, player stats, etc.
 
 # FQZCamera plugin - Camera control
 - This can be used separately or together with FQZ.
