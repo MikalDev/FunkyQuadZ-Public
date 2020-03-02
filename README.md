@@ -29,6 +29,7 @@ There are two modes for FQZs:
 ## Animation
 - Use the C3 Animation Editor
 - Normal animation ACEs
+- Note that in editor, the 'initial' or 'default' animation is not shown, due to a public C3 editor SDK limitation. The correct initial animation will be shown during runtime (preview, etc.) 
 # Constraints
 ## ZSort
 - The FQZ will render in the same order as if they were other 2d sprite objects. They will render from bottom layer to top layer and from bottom to top within a layer.
@@ -46,12 +47,11 @@ There are two modes for FQZs:
   - 2D background bottom layer.
   - 3D FQZ layer (with FQZCamera control)
   - 2D HUD layer (with 0,0 parllax) for text, score, player stats, etc.
-
 # FQZCamera plugin - Camera control
 - This can be used separately or together with FQZ.
-- Each layer requires a FQZ with Camera Control (CC) enabled.
-- The FQZ w/ CC must be on the bottom of the layer (so it updates the camera MV matrix before other drawing occurs.)
-- Control the camera view by changing Camera Position (viewer) and Look Position (target). For most cases restrict the gamer rotation to not rotate beyond straight up or straight down. For full rotation, use the FQZCamera ACEs to control the 'Up Vector' and keep it ortogonal to the camera direction defined by the Camera Position and Look At position.
+- Each layer which needs 3D camera control requires a FQZCamera.
+- The FQZCamera must be on the bottom of the layer and withing the viewport (so it updates the camera MV matrix before other drawing occurs.)
+- Control the camera view by changing Camera Position (viewer) and Look Position (target). For most cases restrict the gamer rotation to not rotate beyond straight up or straight down. For full rotation, use the FQZCamera ACEs to control the 'Up Vector' and keep it ortogonal to the camera direction defined by the Camera Position and Look At position. To read more on 'Up Vector' see [Up Vector](http://learnwebgl.brown37.net/07_cameras/camera_introduction.html)
 
 # Support
 Please use the github issue list for support, so we can track questions, bugs, enhancement requests.
