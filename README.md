@@ -47,11 +47,12 @@ There are two modes for FQZs:
   - 2D background bottom layer.
   - 3D FQZ layer (with FQZCamera control)
   - 2D HUD layer (with 0,0 parllax) for text, score, player stats, etc.
-- To have C3 Sprite (w Zelevation) and FQZ on same layer, you also need to sort the C3 Sprite with the FQZs
+- To have C3 Sprite (w/ Zelevation = 0) and FQZ on same layer, you also need to sort the C3 Sprite with the FQZs
   - C3 cannot sort different objects together
-  - Instead create a dummy FQZ (w/ no image or 0% opacity), place at the same x,y,z of the C3 Sprite
+  - Instead create a dummy FQZ (w/ no image or 0% opacity), place at the same x,y,zElevation of the C3 Sprite
   - After sorting the FQZs, place the C3 Sprite 'in front' of the dummy FQZ.
   - example: `+ FunkyQuadZ: Pick instance with UID 12 -> Sprite: Move in front FunkyQuadZ`
+  - This only works with C3 Sprites with 0 Zelevation.
 # FQZCamera plugin - Camera control
 - This can be used separately or together with FQZ.
 - Each layer which needs 3D camera control requires a FQZCamera.
